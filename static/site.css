@@ -1,0 +1,36 @@
+.container{
+    padding: 20px;
+    background-color: #F8F8F8;
+}
+
+ul{
+    padding:0px;
+}
+
+li{
+    list-style: none; 
+}
+
+#messages-ul li{
+    margin-bottom:10px;
+}
+
+#channels-ul li{
+    margin-bottom:15px;
+}
+
+.color-gray{
+    color:gray;
+}
+
+#timestamp{
+    font-size:12px;
+}
+
+img{
+    height:150px;
+}
+
+h1{
+    font-weight: bolder;
+}

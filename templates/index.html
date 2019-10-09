@@ -1,0 +1,107 @@
+{%extends 'layout.html' %}
+
+{% block title%} Flack {%endblock%}
+
+{% block body%} 
+
+    {% if session['dispname'] %}
+
+        <div class="row alert alert-success role="alert">
+            
+            <div class="col-sm-6">
+                Welcome, <span id="dispname">{{session['dispname']}}</span> &nbsp;&nbsp;
+                <a id="logout" class="btn btn-sm btn-danger pull-right" href="#">Logout</a>
+            </div>
+
+            
+            <div class="col-sm-6" style="text-align: end">
+                <div class="input-group mb-3">
+                    <input id="new_channel_name" type="text" class="form-control" placeholder="Enter name of your new channel">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="btn-new-channel">Create New Channel</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-3">
+                <h5 class="color-gray">Connected Users</h5>
+                <ul id="connected-users-ul">
+                     <!-- <li>dispname</li> -->
+                </ul>
+            </div>
+
+            <div class="col-sm-6">
+                <h5 class="color-gray">Messages: <span id="current-channel">{{session['current_channel']}}</span> </h5>
+
+                <ul id="messages-ul">
+                    <!-- <li><div><b>username:</b> message</div> 
+                        <div><i id="timestamp" class="color-gray">timestamp</i></div>
+                    </li> -->
+                </ul>
+            </div>
+
+            <div class="col-sm-3">
+                <h5 class="color-gray">Channels</h5>
+
+                <ul id="channels-ul">
+                    <!-- <li> <span>Channel Name</span> 
+                        <button class='btn-join' data-channel='Channel Name'>Join
+
+                        </button>
+                    </li> -->
+                </ul>
+                
+                
+            </div>
+
+        </div>      
+
+        <br><br>
+        <div>
+            <div class="input-group mb-3">
+                <input id="message" type="text" class="form-control" placeholder="Enter your message">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btn-send">Send</button>
+                </div>
+            </div>
+            <p id="validation-msg" style="color:red;visibility: hidden;text-align:center;"></p>
+        </div>
+
+    {%else%}
+
+        <div class="alert alert-success role="alert">
+            Sign in by submitting your display name below
+        </div>
+
+        <form method="POST" action="{{ url_for('index')}}">
+
+
+            {% if errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="dispname">Display Name</label>
+                <input type="text" class="form-control" id="dispname" name="dispname"  placeholder="Your Display Name">
+            </div>
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </form>
+
+    {% endif %}
+
+{% endblock %}
